@@ -7,5 +7,5 @@ module.exports = {
 	extends: ['eslint:recommended', 'prettier', 'plugin:react/recommended'],
 	plugins: ['prettier', 'react'],
 	rules: { 'prettier/prettier': ['error'] },
-	env: { browser: true, node: true, mocha: false, jest: false },
+	env: { browser: true, node: true, mocha: true, jest: true },
 };
