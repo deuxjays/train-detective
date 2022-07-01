@@ -1,3 +1,8 @@
-node_modules
-/build
+# Dependency directories
+node_modules/
+
+# Build
+build/
+
+# Runtime data
 /*.log

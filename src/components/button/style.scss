@@ -1,0 +1,17 @@
+.button {
+  border: 0;
+  height: 50px;
+  outline: none;
+  border-radius: 0;
+  font-size: 1em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  background: gray;
+  color: white;
+  transition: all .5s ease;
+  -webkit-appearance: none;
+  &:hover, &:focus {
+    background: darkslategray;
+  }
+}
