@@ -4,7 +4,7 @@ import style from './style.scss';
 
 const Header = () => (
 	<header class={style.header}>
-		<h1>Preact App</h1>
+		<h1>Train Detective</h1>
 		<nav>
 			<Link activeClassName={style.active} href="/">
 				Home
@@ -14,6 +14,9 @@ const Header = () => (
 			</Link>
 			<Link activeClassName={style.active} href="/profile/john">
 				John
+			</Link>
+			<Link activeClassName={style.active} href="/settings">
+				Settings
 			</Link>
 		</nav>
 	</header>
