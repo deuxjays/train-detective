@@ -2,60 +2,53 @@ import { h } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import style from './style.scss';
 
+// Helpers
+import { fetchLocalStorage, setLocalStorage } from '../../lib/storage-helper';
+
 const Form = () => {
-	const [settings, setSettings] = useState({});
+	const [settings, setSettings] = useState();
 
 	useEffect(() => {
-		const name = localStorage.getItem('name') || '';
-		const homeStation = localStorage.getItem('homeStation') || '';
-
-		console.log(localStorage);
-
-		setSettings({
-			name,
-			homeStation,
-		});
+		const data = fetchLocalStorage();
+		setSettings(data);
 	}, []);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const { name, homeStation } = settings;
-		localStorage.setItem('name', name);
-		localStorage.setItem('homeStation', homeStation);
+		setLocalStorage(settings);
 	};
 
 	const handleChange = (e) => {
 		const { value, name } = e.target;
-		setSettings({
+		setSettings((prevState) => ({
+			...prevState,
 			[name]: value,
-		});
+		}));
 	};
 
 	return (
 		<div>
 			<p>App settings</p>
-			<form onSubmit={(e) => handleSubmit(e)}>
-				<label>
-					Name:
-					<input
-						type="text"
-						name="name"
-						value={settings.name}
-						onChange={(e) => handleChange(e)}
-					/>
-				</label>
-				<label>
-					Home Station:
-					<input
-						type="text"
-						name="homeStation"
-						value={settings.homeStation}
-						onInput={(e) => handleChange(e)}
-					/>
-				</label>
-
-				<button type="submit">Save settings</button>
-			</form>
+			{settings && (
+				<div>
+					<form onSubmit={(e) => handleSubmit(e)}>
+						{Object.entries(settings).map(([key, value]) => {
+							return (
+								<label>
+									{key}:
+									<input
+										type="text"
+										name={key}
+										value={value}
+										onChange={(e) => handleChange(e)}
+									/>
+								</label>
+							);
+						})}
+						<button type="submit">Save settings</button>
+					</form>
+				</div>
+			)}
 		</div>
 	);
 };
