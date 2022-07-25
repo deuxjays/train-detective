@@ -13,13 +13,13 @@ const Form = () => {
 		setSettings(data);
 	}, []);
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
+	const handleSubmit = (event) => {
+		event.preventDefault(event);
 		setLocalStorage(settings);
 	};
 
-	const handleChange = (e) => {
-		const { value, name } = e.target;
+	const handleChange = (event) => {
+		const { value, name } = event.target;
 		setSettings((prevState) => ({
 			...prevState,
 			[name]: value,
@@ -31,7 +31,7 @@ const Form = () => {
 			<p>App settings</p>
 			{settings && (
 				<div>
-					<form onSubmit={(e) => handleSubmit(e)}>
+					<form onSubmit={(event) => handleSubmit(event)}>
 						{Object.entries(settings).map(([key, value]) => {
 							return (
 								<label>
@@ -40,7 +40,7 @@ const Form = () => {
 										type="text"
 										name={key}
 										value={value}
-										onChange={(e) => handleChange(e)}
+										onChange={(event) => handleChange(event)}
 									/>
 								</label>
 							);
