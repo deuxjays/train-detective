@@ -3,7 +3,10 @@ import { useEffect, useState } from 'preact/hooks';
 import style from './style.scss';
 
 // Helpers
-import { fetchLocalStorage, setLocalStorage } from '../../lib/storage-helper';
+import {
+	fetchLocalStorage,
+	setLocalStorage,
+} from '../../helpers/local-storage';
 
 const Form = () => {
 	const [settings, setSettings] = useState();
